@@ -17,3 +17,26 @@ void keyReleased() {
   if (key == PAUSE)         pause = false;
   if (key == START)         start = false;
 }
+
+float leftPaddleincrement =  Paddle_Velocity;
+float rightPaddleincrement =  Paddle_Velocity;
+
+void detectKeys()
+{
+if (left_up)
+leftPaddle -= Paddle_Velocity;
+
+if (left_down)
+leftPaddle += Paddle_Velocity;
+
+if (right_up)
+rightPaddle -= Paddle_Velocity;
+
+if (right_down)
+rightPaddle += Paddle_Velocity;
+
+
+
+
+
+}

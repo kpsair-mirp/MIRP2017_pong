@@ -1,8 +1,8 @@
-void updateBallVelocity() {
-  // Detect Ball collisions with walls or paddles
-  // If collide with paddle, or top/bottom wall, then bounce off
-  // If collides with left wall, right player gains one point
-  // If collides with right wall, left player gains one point
+ void updateBallVelocity()
+ {
+   ballVy += gravity;
+
+  // Add control for movement keys here
 }
 
 void updateBallPosition() {
@@ -10,7 +10,55 @@ void updateBallPosition() {
   ballY += ballVy;
 }
 
-void updatePaddlePositions() {
-  // Based on the keys pressedd, move the paddles (update Y position)
-  // Make sure the paddles don't leave the screen
+void resolveCollisions() {
+   //Resolving Collisions with floor(bottom wall);
+  if (ballY > displayHeight-ballRadius){
+    ballY = displayHeight-ballRadius;
+    ballVy *= -restitutionCoeff;
+  }
+  if (ballX > displayWidth-ballRadius){
+    ballX = displayWidth-ballRadius;
+    ballVx *= -restitutionCoeff;
+  }
+     //Resolving Collisions with floor(bottom wall);
+  if (ballX > displayWidth-ballRadius){
+    ballX = displayWidth-ballRadius;
+    ballVx *= -restitutionCoeff;
+  }
+  if (ballX <= ballRadius){
+    ballX = ballRadius;
+     rightLose() ;
+    ballVx *= -restitutionCoeff;
+  }
+  if (ballY >= displayHeight-ballRadius){
+    ballY = displayHeight-ballRadius;
+       leftLose();
+    ballVy *= -restitutionCoeff;
+  }
+  if (ballY < ballRadius){
+    ballY = ballRadius;
+    ballVy *= -restitutionCoeff;
+  }
+//Resolve Collisions with all  other walls;
+
+
+
+
+
+if(ballX < paddleWidth+ballRadius && ballY > leftPaddle && ballY < leftPaddle + paddleLength)
+{
+  ballVx *= -1;
+  ballX = paddleWidth+ballRadius;
+}
+
+if(ballX > displayWidth-paddleWidth-ballRadius && ballY > rightPaddle && ballY < rightPaddle + paddleLength)    
+{
+   ballVx *= -1;
+  ballX = displayWidth-paddleWidth-ballRadius;
+}
+//if (ballX < ballRadius)
+ 
+// if (ballX > displayWidth-ballRadius)
+
+
 }
